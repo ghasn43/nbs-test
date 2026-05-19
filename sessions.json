@@ -1,0 +1,162 @@
+{
+  "token_admin_1773922968": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-03-19T16:22:48.192295",
+    "last_activity": "2026-03-19T16:22:48.192295"
+  },
+  "token_admin_1773923081": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-03-19T16:24:41.078013",
+    "last_activity": "2026-03-19T16:25:13.640139"
+  },
+  "token_admin_1773951817": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-03-20T00:23:37.467141",
+    "last_activity": "2026-03-20T00:23:37.467141"
+  },
+  "token_admin_1773952983": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-03-20T00:43:03.527590",
+    "last_activity": "2026-03-20T01:13:01.990774"
+  },
+  "token_admin_1776423999": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-17T14:06:39.322655",
+    "last_activity": "2026-04-17T14:06:39.322655"
+  },
+  "token_admin_1776424469": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-17T14:14:29.306787",
+    "last_activity": "2026-04-17T14:14:29.306787"
+  },
+  "token_admin_1776478239": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T05:10:39.511490",
+    "last_activity": "2026-04-18T05:10:39.511490"
+  },
+  "token_admin_1776479415": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T05:30:15.864399",
+    "last_activity": "2026-04-18T05:30:15.864399"
+  },
+  "token_admin_1776479837": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T05:37:17.337015",
+    "last_activity": "2026-04-18T05:37:17.337015"
+  },
+  "token_admin_1776480868": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T05:54:28.201744",
+    "last_activity": "2026-04-18T05:54:28.201744"
+  },
+  "token_admin_1776480998": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T05:56:38.165454",
+    "last_activity": "2026-04-18T05:56:38.165454"
+  },
+  "token_admin_1776495673": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T10:01:13.251976",
+    "last_activity": "2026-04-18T10:03:16.610468"
+  },
+  "token_admin_1776530222": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T19:37:02.392330",
+    "last_activity": "2026-04-18T19:37:02.392330"
+  },
+  "token_admin_1776543404": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T20:16:44.352535+00:00",
+    "last_activity": "2026-04-18T20:16:44.353537+00:00"
+  },
+  "token_admin_1776544138": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T20:28:58.640466+00:00",
+    "last_activity": "2026-04-18T20:28:58.640466+00:00"
+  },
+  "token_admin_1776545224": {
+    "username": "admin",
+    "user_id": "admin",
+    "email": "",
+    "roles": [
+      "admin"
+    ],
+    "created_at": "2026-04-18T20:47:04.195151+00:00",
+    "last_activity": "2026-04-18T20:47:04.195151+00:00"
+  }
+}
