@@ -32,7 +32,9 @@ def predict_immune_response(design_params):
     charge = design_params.get("Charge", -5)
     material = design_params.get("Material", "Lipid NP")
     ligand = design_params.get("Ligand", "None")
-    peg_density = design_params.get("PEG_Density", 50)
+    peg_density = design_params.get("PEGDensity") or design_params.get("PEG_Density") or 50
+    if peg_density is None:
+        peg_density = 50
     surface_coating = design_params.get("SurfaceCoating", [])
     
     # 1. Innate Immunity Activation (TLR signaling, pattern recognition)

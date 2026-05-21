@@ -37,9 +37,9 @@ def main():
         st.divider()
         
         if st.button("→ Go to Main App", type="primary", use_container_width=True):
-            st.switch_page("App.py")
+            st.rerun()
         
-        st.info("Or use the browser back button to continue")
+        st.info("You are logged in. Refresh the page or navigate to another section.")
 
         return
 
@@ -115,12 +115,7 @@ def main():
             
             # Redirect to main app
             time.sleep(0.5)  # Brief delay to show success message
-            try:
-                st.switch_page("App.py")
-            except AttributeError:
-                # Fallback for older Streamlit versions
-                st.info("📍 Redirecting to main app...")
-                st.markdown('<meta http-equiv="refresh" content="2;url=App.py" />', unsafe_allow_html=True)
+            st.rerun()
 
         else:
             st.error("❌ Invalid username or password")

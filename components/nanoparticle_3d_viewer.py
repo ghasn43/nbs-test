@@ -136,7 +136,7 @@ def render_nanoparticle_3d(design_params: Dict) -> go.Figure:
     charge_mv = float(design_params.get("Charge", -30))
     ligand_type = design_params.get("Surface Functionalization (Ligand)", "None")
     peg_density = float(design_params.get("PEG_Density", 50))
-    coating_thickness = float(design_params.get("Coating_Thickness", 5))
+    coating_thickness = float(design_params.get("CoatingThickness") or design_params.get("Coating_Thickness") or 5)
     
     # Get material color
     material_info = MATERIAL_COLORS.get(material, MATERIAL_COLORS["Lipid NP"])
@@ -319,7 +319,7 @@ def render_nanoparticle_specifications(design_params: Dict) -> None:
         """)
     
     with spec_col2:
-        coating = design_params.get("Coating_Thickness", 0)
+        coating = design_params.get("CoatingThickness") or design_params.get("Coating_Thickness") or 0
         st.info(f"""
         **Coating Layer**
         - Thickness: {coating} nm

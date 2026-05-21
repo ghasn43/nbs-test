@@ -31,7 +31,9 @@ def predict_tumor_microenvironment_interactions(design_params, disease_context="
     charge = design_params.get("Charge", -5)
     material = design_params.get("Material", "Lipid NP")
     ligand = design_params.get("Ligand", "None")
-    peg_density = design_params.get("PEG_Density", 50)
+    peg_density = design_params.get("PEGDensity") or design_params.get("PEG_Density") or 50
+    if peg_density is None:
+        peg_density = 50
     hydrophobicity = design_params.get("Hydrophobicity", 1.5)
     
     # Disease-specific microenvironment

@@ -16,7 +16,9 @@ def predict_stability_storage(design_params):
     
     material = design_params.get("Material", "Lipid NP")
     size = design_params.get("Size", 100)
-    peg_density = design_params.get("PEG_Density", 50)
+    peg_density = design_params.get("PEGDensity") or design_params.get("PEG_Density") or 50
+    if peg_density is None:
+        peg_density = 50
     charge = design_params.get("Charge", -5)
     hydrophobicity = design_params.get("Hydrophobicity", 1.5)
     

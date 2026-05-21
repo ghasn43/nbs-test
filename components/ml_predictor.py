@@ -80,7 +80,7 @@ class DesignToFeatureConverter:
                 "size_nm": float(design.get("Size", 100)),
                 "charge_mv": float(design.get("Charge", -30)),
                 "peg_density_pct": float(design.get("PEG_Density", 50)),
-                "coating_thickness_nm": float(design.get("Coating_Thickness", 5)),
+                "coating_thickness_nm": float(design.get("CoatingThickness") or design.get("Coating_Thickness") or 5),
                 "encapsulation_pct": float(design.get("Encapsulation", 85)),
                 "zeta_potential_mv": float(design.get("Zeta", -30)),
                 "pdi": float(design.get("PDI", 0.15)),

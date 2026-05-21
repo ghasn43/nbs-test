@@ -32,7 +32,7 @@ def predict_payload_release(design_params):
     release_profile = design_params.get("ReleaseProfile", "Sustained (1 week)")
     encapsulation = design_params.get("Encapsulation", 85)
     charge = design_params.get("Charge", -5)
-    hydrophobicity = design_params.get("Hydrophobicity", 1.5)
+    hydrophobicity = design_params.get("Hydrophobicity") or 1.5
     size = design_params.get("Size", 100)
     drug_name = design_params.get("Drug", "Generic")
     

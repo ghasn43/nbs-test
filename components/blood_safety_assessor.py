@@ -27,7 +27,7 @@ def calculate_hemolysis_risk(design: Dict) -> Dict:
     # Extract parameters
     charge_mv = float(design.get("Charge", -30))
     size_nm = float(design.get("Size", 100))
-    hydrophobicity = float(design.get("Hydrophobicity", 1.5))
+    hydrophobicity = float(design.get("Hydrophobicity") or 1.5)
     encapsulation_pct = float(design.get("Encapsulation", 85))
     peg_density_pct = float(design.get("PEG_Density", 50))
     material = design.get("Material", "Lipid NP")

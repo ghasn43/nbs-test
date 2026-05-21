@@ -540,6 +540,18 @@ with tab1:
 with tab2:
     st.subheader("🎨 Surface Modification & Chemistry")
     
+    # Initialize session state for toggles if not exists
+    if "toggle_surface_area" not in st.session_state:
+        st.session_state.toggle_surface_area = True
+    if "toggle_hydrophobicity" not in st.session_state:
+        st.session_state.toggle_hydrophobicity = True
+    if "toggle_crystallinity" not in st.session_state:
+        st.session_state.toggle_crystallinity = True
+    if "toggle_coating_functional" not in st.session_state:
+        st.session_state.toggle_coating_functional = True
+    
+    # Mandatory Section
+    st.markdown("#### 🔴 Mandatory Parameters")
     col1, col2 = st.columns(2)
     
     with col1:
@@ -552,63 +564,66 @@ with tab2:
             step=2,
             help="Optimal: ±10 mV"
         )
-        
+    
+    st.markdown("#### 🟡 Optional Parameters")
+    
+    # Surface Area Toggle
+    col1, col2 = st.columns([0.2, 0.8])
+    with col1:
+        st.session_state.toggle_surface_area = st.checkbox("", value=st.session_state.toggle_surface_area, key="surface_area_toggle")
+    with col2:
         st.write("**Surface Area**")
+    
+    if st.session_state.toggle_surface_area:
         d["SurfaceArea"] = st.number_input(
             "Surface Area (nm²)",
             min_value=50,
             max_value=2000,
-            value=int(d.get("SurfaceArea", 250)),
+            value=int(d.get("SurfaceArea") or 250),
             step=50,
+            label_visibility="collapsed"
         )
+    else:
+        d["SurfaceArea"] = None
     
+    # Hydrophobicity Toggle
+    col1, col2 = st.columns([0.2, 0.8])
+    with col1:
+        st.session_state.toggle_hydrophobicity = st.checkbox("", value=st.session_state.toggle_hydrophobicity, key="hydrophobicity_toggle")
     with col2:
         st.write("**Hydrophobicity**")
+    
+    if st.session_state.toggle_hydrophobicity:
         d["Hydrophobicity"] = st.number_input(
             "Surface Hydrophobicity (LogP)",
             min_value=-5.0,
             max_value=5.0,
-            value=float(d.get("Hydrophobicity", 1.5)),
+            value=float(d.get("Hydrophobicity") or 1.5),
             step=0.2,
-            format="%.2f"
+            format="%.2f",
+            label_visibility="collapsed"
         )
-        
+    else:
+        d["Hydrophobicity"] = None
+    
+    # Crystallinity Toggle
+    col1, col2 = st.columns([0.2, 0.8])
+    with col1:
+        st.session_state.toggle_crystallinity = st.checkbox("", value=st.session_state.toggle_crystallinity, key="crystallinity_toggle")
+    with col2:
         st.write("**Crystallinity**")
+    
+    if st.session_state.toggle_crystallinity:
         d["CrystallinityIndex"] = st.number_input(
             "Crystallinity Index (%)",
             min_value=0,
             max_value=100,
-            value=int(d.get("CrystallinityIndex", 65)),
+            value=int(d.get("CrystallinityIndex") or 65),
             step=5,
+            label_visibility="collapsed"
         )
-    
-    st.markdown("### 🧪 Coating & Functional Groups")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        d["SurfaceCoating"] = st.multiselect(
-            "Surface Coating Layers",
-            ["PEG (Stealth)", "Chitosan", "Hyaluronic Acid", "Albumin"],
-            default=d.get("SurfaceCoating", ["PEG (Stealth)"])
-        )
-        
-        if d["SurfaceCoating"]:
-            d["CoatingThickness"] = st.number_input(
-                "Coating Thickness (nm)",
-                min_value=0.5,
-                max_value=20.0,
-                value=float(d.get("CoatingThickness", 2.5)),
-                step=0.5,
-                format="%.1f"
-            )
-    
-    with col2:
-        d["FunctionalGroups"] = st.multiselect(
-            "Functional Groups",
-            ["-OH (Hydroxyl)", "-COOH (Carboxyl)", "-NH2 (Amino)", "-SH (Thiol)"],
-            default=d.get("FunctionalGroups", ["-COOH (Carboxyl)"])
-        )
+    else:
+        d["CrystallinityIndex"] = None
     
     st.divider()
     st.markdown("### 🎯 Parameter Impact on Score")
@@ -690,6 +705,59 @@ with tab3:
     st.divider()
     
     # ============================================================
+    # COATING & FUNCTIONAL GROUPS
+    # ============================================================
+    
+    st.markdown("### 🧪 Coating & Functional Groups")
+    
+    # Initialize toggle if not exists
+    if "toggle_coating_functional" not in st.session_state:
+        st.session_state.toggle_coating_functional = True
+    
+    # Coating & Functional Groups Toggle
+    col1, col2 = st.columns([0.2, 0.8])
+    with col1:
+        st.session_state.toggle_coating_functional = st.checkbox("", value=st.session_state.toggle_coating_functional, key="coating_functional_toggle_targeting")
+    with col2:
+        st.markdown("**Enable Coating & Functional Groups Customization**")
+    
+    if st.session_state.toggle_coating_functional:
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            d["SurfaceCoating"] = st.multiselect(
+                "Surface Coating Layers",
+                ["PEG (Stealth)", "Chitosan", "Hyaluronic Acid", "Albumin"],
+                default=d.get("SurfaceCoating", ["PEG (Stealth)"]),
+                label_visibility="collapsed"
+            )
+            
+            if d["SurfaceCoating"]:
+                d["CoatingThickness"] = st.number_input(
+                    "Coating Thickness (nm)",
+                    min_value=0.5,
+                    max_value=20.0,
+                    value=float(d.get("CoatingThickness") or 2.5),
+                    step=0.5,
+                    format="%.1f",
+                    label_visibility="collapsed"
+                )
+        
+        with col2:
+            d["FunctionalGroups"] = st.multiselect(
+                "Functional Groups",
+                ["-OH (Hydroxyl)", "-COOH (Carboxyl)", "-NH2 (Amino)", "-SH (Thiol)"],
+                default=d.get("FunctionalGroups", ["-COOH (Carboxyl)"]),
+                label_visibility="collapsed"
+            )
+    else:
+        d["SurfaceCoating"] = None
+        d["CoatingThickness"] = None
+        d["FunctionalGroups"] = None
+    
+    st.divider()
+    
+    # ============================================================
     # SUB-TAB 2: IMMUNOGENICITY & PEGylation
     # ============================================================
     
@@ -715,39 +783,72 @@ with tab3:
     
     st.markdown("**⚙️ Adjust PEGylation Parameters:**")
     
+    # Initialize PEG Density toggle if not exists
+    if "toggle_peg_density" not in st.session_state:
+        st.session_state.toggle_peg_density = True
+    
     col1, col2, col3 = st.columns(3)
     
     with col1:
         if material_immuno.get("peg_responsive"):
-            d["PEGDensity"] = st.number_input(
-                "PEG Density (%)",
-                min_value=0,
-                max_value=20,
-                value=int(d.get("PEGDensity", 5)),
-                step=1,
-                help="Higher PEG density = better stealth, slower targeting"
-            )
+            # PEG Density Toggle
+            col_toggle, col_label = st.columns([0.15, 0.85])
+            with col_toggle:
+                st.session_state.toggle_peg_density = st.checkbox("", value=st.session_state.toggle_peg_density, key="peg_density_toggle")
+            with col_label:
+                st.write("**PEG Density (%)**")
+            
+            if st.session_state.toggle_peg_density:
+                d["PEGDensity"] = st.number_input(
+                    "PEG Density (%)",
+                    min_value=0,
+                    max_value=20,
+                    value=int(d.get("PEGDensity") or 5),
+                    step=1,
+                    help="Higher PEG density = better stealth, slower targeting",
+                    label_visibility="collapsed"
+                )
+            else:
+                d["PEGDensity"] = None
         else:
             st.info("ℹ️ PEGylation not needed for this material")
             d["PEGDensity"] = 0
     
     with col2:
-        d["PEGChainLength"] = st.selectbox(
+        d["PEGChainLength"] = st.number_input(
             "PEG Chain Length (Da)",
-            [1000, 1500, 2000, 3000, 5000, 10000],
-            index=[1000, 1500, 2000, 3000, 5000, 10000].index(d.get("PEGChainLength", 2000))
+            min_value=500,
+            max_value=20000,
+            value=int(d.get("PEGChainLength", 2000)),
+            step=100,
+            help="Molecular weight of PEG chain in Daltons. Higher = longer circulation time but slower diffusion"
         )
     
+    # Initialize Coating Thickness toggle if not exists
+    if "toggle_coating_thickness" not in st.session_state:
+        st.session_state.toggle_coating_thickness = True
+    
     with col3:
-        d["CoatingThickness"] = st.number_input(
-            "Coating Thickness (nm)",
-            min_value=0.5,
-            max_value=20.0,
-            value=float(d.get("CoatingThickness", 2.5)),
-            step=0.5,
-            format="%.1f",
-            help="Thicker coating = better stealth but slower cell uptake"
-        )
+        # Coating Thickness Toggle
+        col_toggle, col_label = st.columns([0.15, 0.85])
+        with col_toggle:
+            st.session_state.toggle_coating_thickness = st.checkbox("", value=st.session_state.toggle_coating_thickness, key="coating_thickness_toggle")
+        with col_label:
+            st.write("**Coating Thickness (nm)**")
+        
+        if st.session_state.toggle_coating_thickness:
+            d["CoatingThickness"] = st.number_input(
+                "Coating Thickness (nm)",
+                min_value=0.5,
+                max_value=20.0,
+                value=float(d.get("CoatingThickness") or 2.5),
+                step=0.5,
+                format="%.1f",
+                help="Thicker coating = better stealth but slower cell uptake",
+                label_visibility="collapsed"
+            )
+        else:
+            d["CoatingThickness"] = None
     
     # PEGylation details
     with st.expander("📖 PEGylation Strategy & Rationale", expanded=False):
@@ -1245,7 +1346,7 @@ with tab5:
                 "Hydrophobicity (LogP)",
                 min_value=0.0,
                 max_value=5.0,
-                value=float(d.get("Hydrophobicity", 1.5)),
+                value=float(d.get("Hydrophobicity") or 1.5),
                 step=0.1,
                 key="sprint1_hydro_opt",
                 help="Optimal: 0.5-2.5 LogP. Higher = membrane penetration risk"
@@ -1510,7 +1611,7 @@ with tab6:
                 "Hydrophobicity (LogP)",
                 min_value=0.0,
                 max_value=5.0,
-                value=float(d.get("Hydrophobicity", 1.5)),
+                value=float(d.get("Hydrophobicity") or 1.5),
                 step=0.1,
                 key="sprint2_hydro_opt",
                 help="Optimal: 0.5-2.5 LogP. Affects membrane interaction"

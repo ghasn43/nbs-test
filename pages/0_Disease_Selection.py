@@ -67,7 +67,7 @@ except Exception as e:
 
 # Initialize session state for disease selection
 if "selected_disease" not in st.session_state:
-    st.session_state.selected_disease = "Hepatocellular Carcinoma (HCC)"
+    st.session_state.selected_disease = "Liver Cancer (HCC)"
 if "hcc_subtype" not in st.session_state:
     st.session_state.hcc_subtype = "AFP-high HCC"
 if "selected_drug" not in st.session_state:
@@ -164,7 +164,7 @@ with col2:
     st.subheader("💊 Select Therapeutic Drug")
     
     # Get drugs appropriate for selected disease (and subtype if applicable)
-    if "hcc_subtype" in st.session_state and disease == "Hepatocellular Carcinoma (HCC)":
+    if "hcc_subtype" in st.session_state and disease == "Liver Cancer (HCC)":
         available_drugs = get_drugs_for_subtype(disease, st.session_state.hcc_subtype)
     else:
         available_drugs = get_drugs_for_disease(disease)

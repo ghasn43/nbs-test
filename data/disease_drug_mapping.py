@@ -4,7 +4,7 @@ Maps diseases to their appropriate therapeutic drugs with clinical context
 """
 
 DISEASE_DRUG_MAPPING = {
-    "Hepatocellular Carcinoma (HCC)": {
+    "Liver Cancer (HCC)": {
         "subtypes": [
             "AFP-high HCC",
             "Immune-active HCC",

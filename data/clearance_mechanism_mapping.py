@@ -156,7 +156,7 @@ CLEARANCE_BY_CHARGE = {
 
 # Disease-organ accumulation preferences
 DISEASE_CLEARANCE_PREFERENCES = {
-    "Hepatocellular Carcinoma (HCC)": {
+    "Liver Cancer (HCC)": {
         "target_organ": "Liver",
         "desired_accumulation": "Liver (specific HCC cells)",
         "avoid_accumulation": ["Spleen (excessive)", "Kidney (nephrotoxicity)"],

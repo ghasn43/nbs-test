@@ -316,11 +316,11 @@ with tab1:
     st.markdown("### Top Candidate Designs")
     
     # Get disease context
-    selected_disease = st.session_state.get("selected_disease", "Hepatocellular Carcinoma (HCC)")
+    selected_disease = st.session_state.get("selected_disease", "Liver Cancer (HCC)")
     
     # Generate disease & priority-aware material recommendations
     disease_material_pools = {
-        "Hepatocellular Carcinoma (HCC)": {
+        "Liver Cancer (HCC)": {
             "Balanced": ["Lipid NP", "PLGA", "Lipid NP", "Gold NP", "PLGA"],
             "Delivery-First": ["Gold NP", "Lipid NP", "Copper NP", "Silica NP", "Lipid NP"],
             "Safety-First": ["PLGA", "Lipid NP", "PLGA", "Polymer NP", "Lipid NP"],
@@ -358,7 +358,7 @@ with tab1:
     }
     
     # Get materials for this disease (default to HCC if disease not found)
-    disease_materials = disease_material_pools.get(selected_disease, disease_material_pools["Hepatocellular Carcinoma (HCC)"])
+    disease_materials = disease_material_pools.get(selected_disease, disease_material_pools["Liver Cancer (HCC)"])
     selected_materials = disease_materials.get(st.session_state.selected_scenario, ["Lipid NP", "PLGA", "Lipid NP", "Gold NP", "PLGA"])
     
     # Mock candidate designs - adjusted based on disease & scenario
@@ -470,7 +470,7 @@ with tab3:
     
     # Vary material recommendations based on disease & scenario
     disease_material_switches = {
-        "Hepatocellular Carcinoma (HCC)": {
+        "Liver Cancer (HCC)": {
             "Balanced": ("Lipid NP", "PLGA"),
             "Delivery-First": ("Gold NP", "Lipid NP"),
             "Safety-First": ("PLGA", "Lipid NP"),
@@ -507,7 +507,7 @@ with tab3:
         },
     }
     
-    disease_materials_switches = disease_material_switches.get(selected_disease, disease_material_switches["Hepatocellular Carcinoma (HCC)"])
+    disease_materials_switches = disease_material_switches.get(selected_disease, disease_material_switches["Liver Cancer (HCC)"])
     manual_material, optimized_material = disease_materials_switches.get(st.session_state.selected_scenario, ("Lipid NP", "PLGA"))
     
     comparison = pd.DataFrame({
@@ -525,7 +525,7 @@ with tab4:
     
     st.markdown("### Optimization Audit Trail")
     
-    selected_disease_audit = st.session_state.get("selected_disease", "Hepatocellular Carcinoma (HCC)")
+    selected_disease_audit = st.session_state.get("selected_disease", "Liver Cancer (HCC)")
     
     audit_info = {
         "🏥 Disease": selected_disease_audit,

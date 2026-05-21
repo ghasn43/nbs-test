@@ -137,7 +137,7 @@ MATERIAL_IMMUNOGENICITY_PROFILES = {
 
 # Disease-specific immunogenicity requirements
 DISEASE_IMMUNOGENICITY_REQUIREMENTS = {
-    "Hepatocellular Carcinoma (HCC)": {
+    "Liver Cancer (HCC)": {
         "immune_activation_needed": "Immunotherapy drugs only",
         "peg_requirement": "Required for most TKIs",
         "macrophage_targeting": "Not desired for TKIs (may reduce efficacy)",

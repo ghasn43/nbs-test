@@ -113,7 +113,7 @@ SURFACE_TARGETING_LIGANDS = {
 
 # Ligand recommendations by disease
 DISEASE_TARGETING_MAPPING = {
-    "Hepatocellular Carcinoma (HCC)": {
+    "Liver Cancer (HCC)": {
         "primary_ligands": ["Galactose/Mannose", "Transferrin", "Hyaluronic Acid"],
         "secondary_ligands": ["Folic Acid", "Aptamers"],
         "explanation": "HCC is liver-specific; galactose/mannose reach liver directly. Transferrin targets dividing HCC cells. CD44 (HA) targets cancer stem cells."

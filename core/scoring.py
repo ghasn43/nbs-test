@@ -41,15 +41,23 @@ def compute_impact(design: dict, weights: dict = None) -> dict:
     pdi = float(d.get("PDI", 0.15))
     hyd_size = float(d.get("HydrodynamicSize", d["Size"] * 1.2))
     stability = float(d.get("Stability", 85))
-    surface_area = float(d.get("SurfaceArea", 250))
+    surface_area_val = d.get("SurfaceArea")
+    surface_area = float(surface_area_val) if surface_area_val is not None else 250
     degradation_time = float(d.get("DegradationTime", 30))
 
     # Surface & Chemistry parameters
-    hydrophobicity = float(d.get("Hydrophobicity", 1.5))
-    crystallinity = float(d.get("CrystallinityIndex", 65))
+    hydrophobicity_val = d.get("Hydrophobicity")
+    hydrophobicity = float(hydrophobicity_val) if hydrophobicity_val is not None else 1.5
+    crystallinity_val = d.get("CrystallinityIndex")
+    crystallinity = float(crystallinity_val) if crystallinity_val is not None else 65
     coating = d.get("SurfaceCoating", ["PEG (Stealth)"])
-    coating_thickness = float(d.get("CoatingThickness", 2.5))
+    if coating is None:
+        coating = ["PEG (Stealth)"]
+    coating_thickness_val = d.get("CoatingThickness")
+    coating_thickness = float(coating_thickness_val) if coating_thickness_val is not None else 2.5
     functional_groups = d.get("FunctionalGroups", [])
+    if functional_groups is None:
+        functional_groups = []
 
     # Targeting parameters
     ligand = d.get("Ligand", "None")
@@ -302,10 +310,11 @@ def get_recommendations(design: dict) -> list[str]:
     if not coating or (isinstance(coating, list) and "PEG (Stealth)" not in coating):
         recommendations.append("💡 **Add PEG coating** for enhanced circulation time and reduced opsonization")
     
-    coating_thickness = float(design.get("CoatingThickness", 2.5))
-    if coating_thickness < 1.5:
+    coating_thickness_val = design.get("CoatingThickness")
+    coating_thickness = float(coating_thickness_val) if coating_thickness_val is not None else 2.5
+    if coating_thickness and coating_thickness < 1.5:
         recommendations.append("🟡 **Increase coating thickness to 2-5nm** for better protection")
-    elif coating_thickness > 6:
+    elif coating_thickness and coating_thickness > 6:
         recommendations.append("🟡 **Reduce coating thickness** to <6nm to avoid reduced drug penetration")
 
     # Targeting recommendations

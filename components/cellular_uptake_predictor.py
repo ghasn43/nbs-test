@@ -31,8 +31,10 @@ def predict_cellular_uptake(design_params):
     charge = design_params.get("Charge", -5)
     ligand = design_params.get("Ligand", "None")
     ligand_density = design_params.get("LigandDensity", 60)
-    hydrophobicity = design_params.get("Hydrophobicity", 1.5)
+    hydrophobicity = design_params.get("Hydrophobicity") or 1.5
     surface_coating = design_params.get("SurfaceCoating", [])
+    if surface_coating is None:
+        surface_coating = ["PEG (Stealth)"]
     material = design_params.get("Material", "Lipid NP")
     
     # Base uptake depends on size (optimal 50-150 nm)
@@ -73,8 +75,9 @@ def predict_cellular_uptake(design_params):
     # PEGylation reduces uptake slightly (stealth effect)
     peg_reduction = 1.0
     if "PEG (Stealth)" in surface_coating:
-        peg_density = design_params.get("PEG_Density", 50)
-        peg_reduction = 1 - (peg_density / 100) * 0.25  # 0-25% reduction
+        peg_density = design_params.get("PEGDensity") or design_params.get("PEG_Density", 50)
+        if peg_density:
+            peg_reduction = 1 - (peg_density / 100) * 0.25  # 0-25% reduction
     
     # Material-specific uptake rates
     material_uptake_rates = {
